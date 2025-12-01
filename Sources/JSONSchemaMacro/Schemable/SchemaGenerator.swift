@@ -21,7 +21,11 @@ struct EnumSchemaGenerator {
   let isStringBacked: Bool
   let composition: CompositionKeyword
 
-  init(fromEnum enumDecl: EnumDeclSyntax, accessLevel: String? = nil, composition: CompositionKeyword) {
+  init(
+    fromEnum enumDecl: EnumDeclSyntax,
+    accessLevel: String? = nil,
+    composition: CompositionKeyword
+  ) {
     // Use provided access level if available, otherwise use the declaration's modifier
     if let accessLevel {
       // Create modifier with trailing space for proper formatting
@@ -62,7 +66,8 @@ struct EnumSchemaGenerator {
       if !casesWithoutAssociatedValues.isEmpty {
         codeBlockItemList.append(simpleEnumSchema(for: casesWithoutAssociatedValues))
       }
-      codeBlockItem = "JSONComposition.\(raw: composition.jsonCompositionBuilderName)(into: \(name).self) { \(codeBlockItemList) }"
+      codeBlockItem =
+        "JSONComposition.\(raw: composition.jsonCompositionBuilderName)(into: \(name).self) { \(codeBlockItemList) }"
     } else {
       // When no case has an associated value, use simple enum schema
       codeBlockItem = simpleEnumSchema(for: casesWithoutAssociatedValues)

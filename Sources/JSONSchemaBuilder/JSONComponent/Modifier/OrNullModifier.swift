@@ -134,8 +134,8 @@ where Wrapped.Output == WrappedValue {
   }
 }
 
-private extension SchemaComposition {
-  var keywordName: String {
+extension SchemaComposition {
+  fileprivate var keywordName: String {
     switch self {
     case .oneOf:
       return Keywords.OneOf.name
